@@ -29,7 +29,7 @@ function addToyCard (toy) {
       .then(toy => {
         stateToy = state.toys.find(t => t.id == toy.id)
         stateToy.likes += 1
-        renderAllToyCards(state.toys)  
+        renderAllToyCards(state.toys)
       })
     // find the toy in the state,
     // increment the number of likes,
@@ -80,7 +80,11 @@ function listenerForNewToy () {
       likes: 0
     }
     newToy(toy)
-    addToyCard(toy)
+    .then(toy => {
+      addToyCard(toy)
+      state.toys.push(toy)
+    })
+    // addToyCard(toy)
   })
 }
 
